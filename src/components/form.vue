@@ -16,7 +16,8 @@ export default {
         name:'',
         email:'',
         password:'',
-        error:''
+        error:'',
+        check:true
     }),
     methods:{
         send(){
@@ -34,9 +35,17 @@ export default {
                 email:this.email,
                 password:this.password
             }
-            axios.post('https://formspree.io/f/xdoyrovj',data)
-                .then(()=>this.error='В течении 5-минут мы отправим вам ссылку!)')
-                .catch(()=>this.error="Ошибка! Отправте форму еще раз пожалуйста(")
+            if(this.check){
+            axios.post('https://formspree.io/f/xoqyovkg',data)
+                .then(()=>{
+                    this.error='В течении 5-минут мы отправим вам ссылку!!!)'
+                    this.check = false
+                })
+                .catch(()=>{
+                    this.error="Ошибка! Отправте форму еще раз пожалуйста("
+                })
+
+            }
         }
     }
 
